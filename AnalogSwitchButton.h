@@ -18,9 +18,9 @@ class AnalogSwitchButton
     bool released;
     bool update(byte debounceTime = 50);
   private:
-    int _currentState;
-    int _lastFlickerableState;
-    int _lastSteadyState;
+    bool _currentState;
+    bool _lastFlickerableState;
+    bool _lastSteadyState;
     unsigned long _lastDebounceTime;
 };
 
