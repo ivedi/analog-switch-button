@@ -1,0 +1,7 @@
+AnalogSwitchButton  KEYWORD1
+buttonPin KEYWORD1
+bias  KEYWORD1
+pressed KEYWORD1
+released  KEYWORD1
+
+update  KEYWORD2
