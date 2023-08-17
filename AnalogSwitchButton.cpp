@@ -7,7 +7,7 @@
 #include "Arduino.h"
 #include "AnalogSwitchButton.h"
 
-AnalogSwitchButton::AnalogSwitchButton(byte pin, uint12_t bias) {
+AnalogSwitchButton::AnalogSwitchButton(uint8_t pin, uint16_t bias) {
   buttonPin = pin;
   bias = bias;
   pressed = false;
@@ -18,10 +18,10 @@ AnalogSwitchButton::AnalogSwitchButton(byte pin, uint12_t bias) {
   _lastDebounceTime = 0;
 }
 
-bool AnalogSwitchButton::update(byte debounceTime) {
+bool AnalogSwitchButton::update(uint8_t debounceTime) {
   bool stateChanged = false;
   // read the state of the pin
-  uint12_t currentVoltage = analogRead(buttonPin);
+  uint16_t currentVoltage = analogRead(buttonPin);
   _currentState = currentVoltage > bias;
 
   // check to see if you just pressed enough the button
@@ -33,7 +33,7 @@ bool AnalogSwitchButton::update(byte debounceTime) {
     // reset the bouncing timer
     _lastDebounceTime = millis();
     // save the last flickerable state
-    _lastFlickerableState = _ currentState;
+    _lastFlickerableState = _currentState;
   }
 
   if((millis() - _lastDebounceTime) > debounceTime) {
@@ -45,7 +45,7 @@ bool AnalogSwitchButton::update(byte debounceTime) {
       pressed = true;
       released = false;
       stateChanged = true;
-    } else if (_lastSteadyState == true && _currentState = false) {
+    } else if (_lastSteadyState == true && _currentState == false) {
       pressed = false;
       released = true;
       stateChanged = true;

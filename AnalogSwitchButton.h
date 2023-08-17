@@ -11,12 +11,12 @@
 class AnalogSwitchButton
 {
   public:
-    AnalogSwitchButton(byte buttonPin, uint12_t bias);
-    byte buttonPin;
-    uint12_t bias;
+    AnalogSwitchButton(uint8_t buttonPin, uint16_t bias);
+    uint8_t buttonPin;
+    uint16_t bias;
     bool pressed;
     bool released;
-    bool update(byte debounceTime = 50);
+    bool update(uint8_t debounceTime = 50);
   private:
     bool _currentState;
     bool _lastFlickerableState;
