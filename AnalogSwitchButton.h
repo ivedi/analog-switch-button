@@ -13,9 +13,9 @@ class AnalogSwitchButton
   public:
     AnalogSwitchButton(byte buttonPin, uint12_t bias);
     byte buttonPin;
+    uint12_t bias;
     bool pressed;
     bool released;
-    void begin();
     bool update(byte debounceTime = 50);
   private:
     int _currentState;
