@@ -1,2 +1,2 @@
 # analog-switch-button
-Converts analog reads into binary values with respect to bias.
+An arduino library for converting analog reads into button presses/releases.
