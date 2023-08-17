@@ -11,9 +11,9 @@
 class AnalogSwitchButton
 {
   public:
-    AnalogSwitchButton(uint8_t buttonPin, uint16_t bias);
+    AnalogSwitchButton(uint8_t buttonPin, uint16_t switchPoint);
     uint8_t buttonPin;
-    uint16_t bias;
+    uint16_t switchPoint;
     bool pressed;
     bool released;
     bool update(uint8_t debounceTime = 50);

@@ -7,9 +7,9 @@
 #include "Arduino.h"
 #include "AnalogSwitchButton.h"
 
-AnalogSwitchButton::AnalogSwitchButton(uint8_t pin, uint16_t bias) {
+AnalogSwitchButton::AnalogSwitchButton(uint8_t pin, uint16_t _switchPoint) {
   buttonPin = pin;
-  bias = bias;
+  switchPoint = _switchPoint;
   pressed = false;
   released = true;
   _currentState = false;
@@ -22,7 +22,7 @@ bool AnalogSwitchButton::update(uint8_t debounceTime) {
   bool stateChanged = false;
   // read the state of the pin
   uint16_t currentVoltage = analogRead(buttonPin);
-  _currentState = currentVoltage > bias;
+  _currentState = currentVoltage > switchPoint;
 
   // check to see if you just pressed enough the button
   // and you've waited long enough
@@ -41,11 +41,11 @@ bool AnalogSwitchButton::update(uint8_t debounceTime) {
     // debounce delay, so take it as the actual current state:
 
     // if the button has changed:
-    if (_lastSteadyState == false && _currentState == true) {
+    if (_lastSteadyState == true && _currentState == false) {
       pressed = true;
       released = false;
       stateChanged = true;
-    } else if (_lastSteadyState == true && _currentState == false) {
+    } else if (_lastSteadyState == false && _currentState == true) {
       pressed = false;
       released = true;
       stateChanged = true;
